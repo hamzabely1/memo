@@ -10,4 +10,18 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+    justify-content: space-between;
+    
+}
+.divnav{
+height: 30px;
+width: 70px;
+background-color: white;
+color: black;
+border-radius: 10px;
+text-decoration: none;
+}
+
+.form{
+  display: flex;
 }

@@ -1,23 +1,56 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
 
-function App() {
+import {BrowserRouter,Routes,Route,} from 'react-router-dom'
+
+import Home from './Home';
+import Heder from './conponent/Heder';
+import Login from './conexion/Login';
+import Register from './conexion/Register';
+
+  function App() {
+
+const [items,setItems] = useState([])
+
+useEffect(() =>{
+
+
+fetch('http://127.0.0.1:8000/api/articles')
+.then(response => response.json())
+.then((result)=>{
+  setItems(result)
+
+console.log(result);
+
+})
+
+  },[])
+
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+<BrowserRouter>
+
+
+<Routes>
+
+
+
+<Route path='/login' element={<Login/>}/>
+<Route path='/home' element={<Home/>}/>
+<Route path='/register' element={<Register/>}/>
+
+</Routes>
+
+
+</BrowserRouter>
+
+ 
+
+
     </div>
   );
 }
