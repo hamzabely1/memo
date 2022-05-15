@@ -9,6 +9,7 @@ import Login from './conexion/Login';
 import Register from './conexion/Register';
 
   function App() {
+    
 
 const [items,setItems] = useState([])
 
@@ -32,6 +33,8 @@ console.log(result);
   return (
     <div className="App">
 
+
+
 <BrowserRouter>
 
 
@@ -40,8 +43,9 @@ console.log(result);
 
 
 <Route path='/login' element={<Login/>}/>
-<Route path='/home' element={<Home/>}/>
+<Route path='/' element={<Home/>}/>
 <Route path='/register' element={<Register/>}/>
+<Route path='/home' element={<Home/>}/>
 
 </Routes>
 

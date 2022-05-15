@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react'
 import Heder from '../conponent/Heder'
-
+import Reg from '../conponent/Reg'
 const Register = () => {
 
 const envoi=()=>{
 
-    useEffect = (() =>{
-fetch('')
 
 
 
 
-    },[])
+
 
 
 }
@@ -28,13 +26,8 @@ fetch('')
 
 
 
+<Reg/>
 
- <input  ></input>
-<input></input>
-<input></input>
-<input></input>
-<input></input>
-<button onClick={envoi()} className='btn btn-dark'></button>   
 
 </div>
 
