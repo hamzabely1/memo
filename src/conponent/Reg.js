@@ -1,5 +1,6 @@
 
 import React, {  useEffect, useState } from 'react'
+import 'animate.css';
 
 const Reg = () => {
   const [name,setNom] = useState('');
@@ -26,15 +27,8 @@ headers:{
 })
 .then(response => response.json)
 .then(rep =>{
- console.log(rep); 
 })
 
-}
-
-
-
-const envois=()=>{
-  console.log(profile);
 }
 
 
