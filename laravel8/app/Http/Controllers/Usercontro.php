@@ -24,16 +24,20 @@ return $user;
 
 
 }
-public function login(Request $request){
+public function login(Request $req){
+    $email =  $req->input('email');
+    $password = $req->input('password');
 
-$user = User::where('email',$request->email)->first();
-
-if(!$user || !Hash::check($request->password, $user->password))
-
-{
-    return  response()->json($user);
-};
-
+    $user = User::where('email',$email)->first();
+    if(!Hash::check($password, $user->password))
+    {
+        echo "Not Matched";
+    }
+    else
+    {
+        //$user = DB::table('users')->where('email',$email)->first();
+       echo $user->email;
+    }
 }
 
 

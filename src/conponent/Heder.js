@@ -5,10 +5,28 @@ import { Link } from 'react-router-dom'
 
 
 const Heder = () => {
+  const usersss = localStorage.getItem('users');
+
+  const log_out = () => {
+    localStorage.removeItem("users")
+
+  }
 
 
+  const log = ()=>{
 
+    if (usersss == undefined) {
+    return <h1>hello</h1>
 
+    } else {
+
+      return <button onClick={log_out} className='btn btn-danger'> log out</button>
+
+    }
+
+    
+      }
+    
 
 
 
@@ -54,8 +72,7 @@ const Heder = () => {
        
       </ul>
       <form className="d-flex">
-        <input className="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit">Rechercher</button>
+        {log()}
       </form>
     </div>
   </div>

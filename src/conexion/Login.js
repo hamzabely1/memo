@@ -2,36 +2,61 @@ import React, { useEffect, useState } from 'react'
 
 import Heder from '../conponent/Heder'
 
+import axios from 'axios';
+import { createBrowserHistory } from 'history';
 
 const Login = () => {
 
-const [email,setEmail] = useState('');
-const [password,setPassword] = useState('');
+const [username,setUsername] = useState('');
+const [pass,setPass] = useState('');
 
 
-const login ={email,password};
+const[msg,setMsg] =useState('');
+
+const [user,setUser] =useState({
+
+  email:'',
+  password:'',
+});
+
+
+
+ 
+const {email,password} = user;
+const onInputChange = e => {
+  setUser({ ...user, [e.target.name]: e.target.value });
+};
+
+
+
+let history =createBrowserHistory();
+
+
 
 const login_login =()=>{
 
+const users = {user};
 
 
-fetch('http://127.0.0.1:8000/api/login',
 
-{
-  method:'POST',
-  headers:{
-  "Content-Type" : "application/json",
-  "accept" : "application/json"},
-   body: JSON.stringify(login)
-  })
-
-.then(res => res.json)
-.then(rep =>{
-
-  console.log(rep);
+if(user.email === '')
+       {
+         alert('Email Field is empty')
+       }
+       else if(user.password === '')
+       {
+         alert('Pass Field is empty')
+       }
 
 
-})
+axios.post('http://127.0.0.1:8000/api/login',user)
+.then(responce=>{
+  setMsg(responce.data);
+  localStorage.setItem("users",responce.data);
+history.push("/home");
+
+
+}) 
 
 
 
@@ -70,10 +95,10 @@ fetch('http://127.0.0.1:8000/api/login',
 <br></br>
 <label>Votre Email</label>
 
-<input  onChange={(e)=>setEmail(e.target.value)} className="form-control input-sm" type="text" placeholder="Email" aria-label="Repository description" />
+<input  onChange={(e)=>onInputChange(e)} value={email} name="email" className="form-control input-sm" type="text" placeholder="Email" aria-label="Repository description" />
 <br></br>
 <label>mots de passe</label>
-<input  onChange={(e)=>setPassword(e.target.value)} className="form-control input-sm" type="text" placeholder="Mots de passe" aria-label="Repository description" />
+<input  onChange={(e)=>onInputChange(e)} name="password" value={password}  className="form-control input-sm" type="text" placeholder="Mots de passe" aria-label="Repository description" />
 <br></br>
 
 <button  onClick={login_login} className="btn btn-dark" type="button">login</button>
