@@ -6,46 +6,14 @@ import { useState } from 'react';
 
 const Home = () => {
 
-
-
-  const [name,setNom] = useState('');
-  const [prenom,setPrenom] = useState('');
-  const [email,setEmail] = useState('');
-  const [password,setPassword] = useState('');
-
-  const profile = {name,email,password};
-
-  const envoi =() =>{
-
-
-
-    fetch('http://127.0.0.1:8000/api/registe',
-    {
-    method:'POST',
-    headers:{
-    "Content-Type" : "application/json",
-    "accept" : "application/json"},
-     body: JSON.stringify(profile)
-    })
-    .then(response => response.json)
-    .then(rep =>{
-    })
-    
-    }
-    
-    
-
-
-
-const flex ={
+const center ={
 display:'flex',
+justifyContent:'center'
 }
-const pp ={
-  height:'300px'
-  }
+
   const imi ={
    borderRadius:'10px',
-   height:'300px'
+   width:"500px"
     }
   
 
@@ -55,11 +23,12 @@ const pp ={
     <div>
 <Heder/>
 
-<div class="container-sm">100% wide until small breakpoint
+<div className="container-sm">
+
+<br></br>
 
 
-
-<div class="card">
+<div className="card">
 
  
 
@@ -69,56 +38,38 @@ const pp ={
 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of</p>
 
 
-<div style={flex}>
-
-<img style={imi} src='https://imagehost9.online-image-editor.com/oie_upload/images/15221655w722VD2c1r/transparent.png'></img>
+<div style={center}>
 
 
 
 
 
-
-<form className='formi'>
-  
-<label>nom</label>
-<input value={name}  onChange={(e)=>{setNom(e.target.value)}}  class="form-control input-sm" type="text" placeholder="Nom" aria-label="Repository description" />
-<br></br>
-<label>prenom</label>
-
-<input value={prenom} onChange={(e)=>{setPrenom(e.target.value)}} class="form-control input-sm" type="text" placeholder="Prenom" aria-label="Repository description" />
-
-<br></br>
-<label>Email</label>
-
-<input value={email} onChange={(e)=>{setEmail(e.target.value)}} class="form-control input-sm" type="text" placeholder="Email" aria-label="Repository description" />
-<br></br>
-<label>Paswword</label>
-
-<input value={password} onChange={(e)=>{setPassword(e.target.value)}} class="form-control input-sm" type="text" placeholder="Password" aria-label="Repository description" />
-<br></br>
-
-<button onClick={envoi} class="btn" type="button">Button</button>
-
-</form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<img style={imi} className='rounded float-start' src='https://media.lesechos.com/api/v1/images/view/5e5647bd3e4546399c47e53e/1280x720/11756-1525686128-rgpd-utilisateur.jpg'></img>
 
 </div>
+<buttton className='btn btn-dark'>S'inscrire</buttton>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <br></br>
 
@@ -137,7 +88,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 <img src='https://imagehost9.online-image-editor.com/oie_upload/images/OIE_2019NOV_62903217_74293086/1601259YqkThXgz.png'></img>
 </p>
 
-  <div class="card-body">
+  <div className="card-body">
   </div>
 </div>
 

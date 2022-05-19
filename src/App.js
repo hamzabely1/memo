@@ -4,28 +4,15 @@ import { useEffect, useState } from 'react';
 import {BrowserRouter,Routes,Route,} from 'react-router-dom'
 
 import Home from './Home';
-import Heder from './conponent/Heder';
 import Login from './conexion/Login';
 import Register from './conexion/Register';
 
   function App() {
     
 
-const [items,setItems] = useState([])
-
-useEffect(() =>{
 
 
-fetch('http://127.0.0.1:8000/api/articles')
-.then(response => response.json())
-.then((result)=>{
-  setItems(result)
 
-console.log(result);
-
-})
-
-  },[])
 
 
 
@@ -46,6 +33,7 @@ console.log(result);
 <Route path='/' element={<Home/>}/>
 <Route path='/register' element={<Register/>}/>
 <Route path='/home' element={<Home/>}/>
+<Route path='register/login' element={<Login/>}/>
 
 </Routes>
 
