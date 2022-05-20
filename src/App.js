@@ -6,6 +6,7 @@ import {BrowserRouter,Routes,Route,} from 'react-router-dom'
 import Home from './Home';
 import Login from './conexion/Login';
 import Register from './conexion/Register';
+import HomeUtilizateur from './HomeUtilizateur';
 
   function App() {
     
@@ -34,6 +35,7 @@ import Register from './conexion/Register';
 <Route path='/register' element={<Register/>}/>
 <Route path="/home" element={<Home/>}/>
 <Route path='register/login' element={<Login/>}/>
+<Route path='/homeuser' element={<HomeUtilizateur/>}/>
 
 </Routes>
 

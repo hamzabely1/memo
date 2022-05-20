@@ -14,19 +14,50 @@ const Heder = () => {
 
 
   const log = ()=>{
-
     if (usersss == undefined) {
     return <h1>hello</h1>
-
     } else {
-
       return <button onClick={log_out} className='btn btn-danger'> log out</button>
-
     }
-
-    
       }
+
+
+
+      const insription=() =>{
+
+        if (usersss == undefined) {
+            return <Link to={"/register"}> <p className='nav-link active'>Register</p></Link>
+            return <Link to={"/login"}> <p className='nav-link active'>login</p></Link>
+
+          } else {
+
+          }
+            }
+
+      
     
+            const login=() =>{
+
+              if (usersss == undefined) {
+                  return <Link to={"/login"}> <p className='nav-link active'>login</p></Link>
+      
+                } else {
+      
+                }
+                  }
+                  
+      const home=() =>{
+
+        if (usersss == undefined) {
+            return <Link to={"/home"}> <p className='nav-link active'>Acceuil</p></Link>
+          
+          } else {
+            return <Link to={"/homeuser"}> <p className='nav-link active'>home</p></Link>
+
+          }
+            }
+
+      
 
 
 
@@ -41,33 +72,17 @@ const Heder = () => {
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
-        <Link to={'/home'}>
 
 
-        
-        <li className="nav-item">
-          <p className='nav-link active'>Accueil</p>
-        </li>
 
-     </Link> 
+        {home()}
+       
+ 
      
-     <Link to={'/register'}>   
-<li className="nav-item">
-<p className='nav-link active'>Inscrition</p>
-</li>
 
-</Link>
  
-      
-<Link to={'/login'}>   
-<li className="nav-item">
-<p className='nav-link active'>Connexion</p>
-
-</li>
-
-</Link>
- 
-      
+{insription()}
+     {login()} 
       
        
       </ul>
