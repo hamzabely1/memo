@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\budget;
 use App\Http\Controllers\Usercontro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register',[Usercontro::class,'index']);
 
 Route::post('/login',[Usercontro::class,'login']);
+Route::post('/add',[budgetcontro::class,'index']);

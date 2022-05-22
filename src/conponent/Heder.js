@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { createBrowserHistory } from 'history';
 
 
+let history = createBrowserHistory() 
 
 
 const Heder = () => {
@@ -9,6 +11,9 @@ const Heder = () => {
 
   const log_out = () => {
     localStorage.removeItem("users")
+    localStorage.removeItem("budget")
+history.push('/home');
+
 
   }
 
@@ -20,40 +25,24 @@ const Heder = () => {
       return <button onClick={log_out} className='btn btn-danger'> log out</button>
     }
       }
-
-
-
       const insription=() =>{
-
         if (usersss == undefined) {
             return <Link to={"/register"}> <p className='nav-link active'>Register</p></Link>
-            return <Link to={"/login"}> <p className='nav-link active'>login</p></Link>
-
           } else {
-
           }
             }
-
-      
-    
             const login=() =>{
-
               if (usersss == undefined) {
                   return <Link to={"/login"}> <p className='nav-link active'>login</p></Link>
-      
                 } else {
-      
                 }
                   }
                   
       const home=() =>{
-
         if (usersss == undefined) {
             return <Link to={"/home"}> <p className='nav-link active'>Acceuil</p></Link>
-          
           } else {
             return <Link to={"/homeuser"}> <p className='nav-link active'>home</p></Link>
-
           }
             }
 
@@ -71,19 +60,9 @@ const Heder = () => {
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-
-
-
-
         {home()}
-       
- 
-     
-
- 
 {insription()}
-     {login()} 
-      
+     {login()}
        
       </ul>
       <form className="d-flex">

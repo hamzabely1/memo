@@ -1,13 +1,27 @@
 
-import React, {  useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import 'animate.css';
 import { Link } from 'react-router-dom';
-const Reg = () => {
-  const [name,setNom] = useState('');
-  const [prenom,setPrenom] = useState('');
-  const [email,setEmail] = useState('');
-  const [password,setPassword] = useState('');
+import axios from 'axios';
 
+
+
+
+
+
+const Reg = () => {
+
+  const[errors,setErrors] = useState('');
+  const [user, setUser] = useState({
+      name: "",
+      email: "",
+      password:""
+    });
+
+    const {name, email,password} = user;
+    const onInputChange = e => {
+      setUser({ ...user, [e.target.name]: e.target.value });
+    };
 
 const profile = {name,email,password};
 
@@ -15,24 +29,15 @@ const profile = {name,email,password};
 
 const envoi =() =>{
 
-fetch('http://127.0.0.1:8000/api/register',
-{
-method:'POST',
-headers:{
-"Content-Type" : "application/json",
-"accept" : "application/json"},
- body: JSON.stringify(profile)
-})
-.then(response => response.json)
-.then(rep =>{
-})
+
+ axios.post("http://127.0.0.1:8000/api/register",user);
+setErrors('Registration Successful')
+setUser({name:"",email:"",password:""}) // To Clear all fields
+
+
+
 
 }
-
-
-
-
-
 
 const flex={
    display:'flex',
@@ -53,24 +58,26 @@ const flex={
 <form style={form}>
 
 <h1>INSCRIPTION</h1>
-
+<h3 style={{color:"green"}}>{errors}</h3>
 
 <label>Nom</label>
-<input value={name}  onChange={(e)=>{setNom(e.target.value)}}  className="form-control input-sm" type="text" placeholder="NOM" aria-label="Repository description" />
+<input name='name' value={name}  onChange={e => onInputChange(e)}  className="form-control input-sm" type="text" placeholder="NOM" aria-label="Repository description" />
 <br></br>
 <label>Prénom</label>
 
-<input value={prenom} onChange={(e)=>{setPrenom(e.target.value)}} className="form-control input-sm" type="text" placeholder="Prénom" aria-label="Repository description" />
+<input  className="form-control input-sm" type="text" placeholder="Prénom" aria-label="Repository description" />
 
 <br></br>
 <label>Votre Email</label>
 
-<input value={email} onChange={(e)=>{setEmail(e.target.value)}} className="form-control input-sm" type="text" placeholder="Email" aria-label="Repository description" />
+<input name='email' value={email} onChange={e => onInputChange(e)} className="form-control input-sm" type="text" placeholder="Email" aria-label="Repository description" />
 <br></br>
 <label>Créé votre mots de passe</label>
 
-<input value={password} onChange={(e)=>{setPassword(e.target.value)}} className="form-control input-sm" type="text" placeholder="Mots de passe" aria-label="Repository description" />
+<input name='password' value={password} onChange={e => onInputChange(e)} className="form-control input-sm" type="text" placeholder="Mots de passe" aria-label="Repository description" />
 <br></br>
+
+
 
 <Link to={'login'}>
 <button onClick={envoi} className="btn btn-dark" type="button">S'inscrire</button>

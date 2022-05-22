@@ -17,6 +17,7 @@ const [user,setUser] =useState({
 
   email:'',
   password:'',
+
 });
 
 
@@ -24,7 +25,7 @@ const [user,setUser] =useState({
  
 const {email,password} = user;
 const onInputChange = e => {
-  setUser({ ...user, [e.target.name]: e.target.value });
+  setUser({ ...user, [e.target.name]: e.target.value});
 };
 
 
@@ -35,8 +36,13 @@ let history =createBrowserHistory();
 
 const login_login =()=>{
 
-const users = {user};
 
+
+
+
+
+
+const users = {user};
 
 
 if(user.email === '')
@@ -53,10 +59,14 @@ axios.post('http://127.0.0.1:8000/api/login',user)
 .then(responce=>{
   setMsg(responce.data);
   localStorage.setItem("users",responce.data);
-history.push("/homeuser");
-
+  localStorage.setItem('users',responce.data);
+history.push('/homeuser')
 
 }) 
+
+
+
+
 
 
 
@@ -100,6 +110,7 @@ history.push("/homeuser");
 <label>mots de passe</label>
 <input  onChange={(e)=>onInputChange(e)} name="password" value={password}  className="form-control input-sm" type="text" placeholder="Mots de passe" aria-label="Repository description" />
 <br></br>
+
 
 <button  onClick={login_login} className="btn btn-dark" type="button">login</button>
 
