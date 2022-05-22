@@ -13,6 +13,7 @@ const Heder = () => {
     localStorage.removeItem("users")
     localStorage.removeItem("budget")
 history.push('/home');
+fetch('http://127.0.0.1:8000/api/listdestroy')
 
 
   }

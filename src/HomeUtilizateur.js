@@ -1,43 +1,86 @@
-import React, {  useState } from 'react'
+import axios from 'axios';
+import React, {  useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import Heder from './conponent/Heder'
-
-
+import { createBrowserHistory } from 'history';
+ let history = createBrowserHistory()
 
 
 const HomeUtilizateur = () => {
 const usersss = localStorage.getItem('users');
-const [budget,setbudget] = useState("");
-const storebudget = localStorage.getItem('budget');
+
+const storebudget = localStorage.getItem('budget')
+const [budget,setbudget] = useState('')
 
 
 
-const [motive,setmotive] = useState("");
-const [depence,setdeponce] = useState("");
-const [jour,setjour] = useState("");
+const addbudget =()=>{
 
+  localStorage.setItem('budget',budget)
 
-const aggachat ={motive,depence,jour}
-
-
-const add = ()=>{
- localStorage.setItem('budget',budget);
-}
-
-
-const addachat=()=>{
-
-
-localStorage.setItem('achatmotive',motive);
-localStorage.setItem('achatdepence',depence);
-localStorage.setItem('achatjour',jour);
 
 }
 
+const re =()=>{
+    window.location.reload()
+}
 
 
-const textmotive = localStorage.getItem('achatmotive')
-const textdepence = localStorage.getItem('achatdepence')
-const textjour = localStorage.getItem('achatjour')
+const [list,setlist] = useState({
+
+  motive:"",
+  depence:"",
+  jour:""
+});
+const {motive,depence,jour} = list
+const onInputChange = e => {
+  setlist({ ...list, [e.target.name]: e.target.value });
+};
+
+
+  function addachat() {
+   
+    axios.post('http://127.0.0.1:8000/api/addlist', list);
+    setlist({motive:"",depence:"",jour:""});
+localStorage.setItem('depence',depence)
+
+console.log(storebudget);
+const depencer= localStorage.getItem('depence')
+const total = storebudget - depencer;
+
+localStorage.setItem('budget', total)
+
+  }
+
+const [lista,setlista]= useState([])
+
+useEffect(()=>{
+fetch('http://127.0.0.1:8000/api/list')
+.then(responce => responce.json())
+.then((rep)=>{
+setlista(rep)
+})
+},[])
+
+
+
+
+
+
+const rettangolo = {
+
+height:'30px',
+width:'90px',
+border:'solid black 1px',
+marginTop:'10px',
+borderRadius:'5px',
+
+}
+
+const flex ={
+  display:'flex',
+  justifyContent:'center',
+}
 
 
 
@@ -58,17 +101,25 @@ const textjour = localStorage.getItem('achatjour')
 </br>
 <br>
 </br>
-<p>{usersss}</p>
+
+
 <p>
   <a className="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
    +
   </a>
   
 </p>
+<p>
+  <button onClick={re} className='btn btn-success'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+  <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+</svg></button>
+  
+</p>
 <div className="collapse" id="collapseExample">
   <div className="card card-body">
-    <input   value={budget} onChange={(e)=>{setbudget(e.target.value)}}></input>
-    <button onClick={add}  className='btn btn-dark'>add</button>
+    <input onChange={(e)=>{setbudget(e.target.value)}} ></input>
+    <button onClick={addbudget} className='btn btn-dark'>add</button>
 
 
   </div>
@@ -95,49 +146,80 @@ const textjour = localStorage.getItem('achatjour')
  
   </div>
 </nav>
-<div className="tab-content" id="nav-tabContent">
-  <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+<div  className="tab-content" id="nav-tabContent">
 
-
-  <div class="container-sm">
-
-
-  <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>{textjour}</td>
-      <td>{textdepence}</td>
-      <td>{textmotive}</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2"></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+<div style={flex}>
 
 
 
 
+
+<td>
+{
+lista.map((listas)=>{
+return(
+  <div className='text-end' style={rettangolo}>
+<td>{listas.id}</td>
+  </div>
+)
+})
+}
+</td>
+
+
+<td>
+
+  {
+
+lista.map((listas)=>{
+return(
+<div style={rettangolo}>
+  <td>-{listas.depence}</td>
+</div>
+)
+})
+  }
+</td>
+
+<td>
+{
+lista.map((listas)=>{
+  return(
+    <div style={rettangolo}>
+<td>{listas.motive}</td>
+    </div>
+  )
+  })
+}
+</td>
+
+<td>
+  {
+lista.map((listas)=>{
+return(
+  <div style={rettangolo}>
+  <td>{listas.jour}</td>
   </div>
 
-  </div>
+)
+
+})
+
+  }
+
+
+</td>
+
+
+
+
+
+
+
+</div>
+
+
+
   <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
 
   <div class="container-sm">
@@ -145,15 +227,15 @@ const textjour = localStorage.getItem('achatjour')
 <br></br>
 <div class="input-group input-group-sm mb-3">
   <span class="input-group-text" id="inputGroup-sizing-sm">motive</span>
-  <input onChange={(e)=>{setmotive(e.target.value)}}  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"/>
+  <input name='motive' value={motive} onChange={e=>onInputChange(e)}  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"/>
 </div>
 <div class="input-group input-group-sm mb-3">
   <span  class="input-group-text" id="inputGroup-sizing-sm">depence </span>
-  <input onChange={(e)=>{setdeponce(e.target.value)}}  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"/>
+  <input name='depence'  value={depence} onChange={e=>onInputChange(e)}  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"/>
 </div>
 <div class="input-group input-group-sm mb-3">
   <span class="input-group-text" id="inputGroup-sizing-sm">Fait le jour</span>
-  <input onChange={(e)=>{setjour(e.target.value)}} type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"/>
+  <input name='jour' value={jour} onChange={e=>onInputChange(e)} type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"/>
 </div>
 
 <button onClick={addachat} className='btn btn-dark'>engestre</button>

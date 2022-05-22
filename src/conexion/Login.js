@@ -62,6 +62,8 @@ axios.post('http://127.0.0.1:8000/api/login',user)
   localStorage.setItem('users',responce.data);
 history.push('/homeuser')
 
+window.location.reload()
+
 }) 
 
 

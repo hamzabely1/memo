@@ -20,10 +20,9 @@ const Reg = () => {
 
     const {name, email,password} = user;
     const onInputChange = e => {
-      setUser({ ...user, [e.target.name]: e.target.value });
+      setUser({...user, [e.target.name]: e.target.value });
     };
 
-const profile = {name,email,password};
 
 
 

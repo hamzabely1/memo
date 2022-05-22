@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\budget;
+use App\Http\Controllers\listcontro;
 use App\Http\Controllers\Usercontro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +26,6 @@ Route::post('/register',[Usercontro::class,'index']);
 
 Route::post('/login',[Usercontro::class,'login']);
 Route::post('/add',[budgetcontro::class,'index']);
+Route::post('/addlist',[listcontro::class,'store']);
+Route::get('/list',[listcontro::class,'create']);
+Route::get('/listdestroy',[listcontro::class,'destroy']);

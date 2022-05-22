@@ -19,7 +19,11 @@ const Home = () => {
     width: "500px"
   }
 
+const im = {
 
+  background:'url(../img/u.png)',
+
+}
 
 
   return (
@@ -43,10 +47,17 @@ const Home = () => {
           <br></br>
           <img src='https://classe-export.com/wp-content/uploads/2021/11/e-commerce-nation.jpg' />
           <h3>nous</h3>
-          <p>
+          <p >
+          
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+
+            
             <img src='https://imagehost9.online-image-editor.com/oie_upload/images/OIE_2019NOV_62903217_74293086/1601259YqkThXgz.png'></img>
           </p>
+          <div style={im}>
+
+          </div>
 
           <div className="card-body">
           </div>
