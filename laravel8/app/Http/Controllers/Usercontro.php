@@ -45,7 +45,6 @@ public function login(Request $req){
 
 
     $user = User::where('email',$email)->first();
-        //$user = DB::table('users')->where('email',$email)->first();
        echo $user->email;
 
        echo $password;

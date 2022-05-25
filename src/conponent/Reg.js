@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
-
+import { createBrowserHistory } from 'history';
 
 
 
@@ -24,14 +24,34 @@ const Reg = () => {
     };
 
 
-
+let history = createBrowserHistory();
 
 const envoi =() =>{
+
+  if(name == ''){
+alert('choisissez un nom')
+  }else if(email == ''){
+alert('choisissez un email')
+  }else if(password == ""){
+    alert('choisissez un password')
+
+  }else if(name != '' && email != '' && password != ''){
 
 
  axios.post("http://127.0.0.1:8000/api/register",user);
 setErrors('Registration Successful')
 setUser({name:"",email:"",password:""}) // To Clear all fields
+history.push('login');
+
+
+window.location.reload()
+  }
+
+
+
+
+
+  
 
 
 
@@ -78,9 +98,9 @@ const flex={
 
 
 
-<Link to={'login'}>
+
 <button onClick={envoi} className="btn btn-dark" type="button">S'inscrire</button>
-</Link>
+
 </form>
 
 

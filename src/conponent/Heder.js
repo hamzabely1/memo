@@ -28,20 +28,20 @@ fetch('http://127.0.0.1:8000/api/listdestroy')
       }
       const insription=() =>{
         if (usersss == undefined) {
-            return <Link to={"/register"}> <p className='nav-link active'>Register</p></Link>
+            return <Link to={"/register"}> <p className='btn btn-info'>Register</p></Link>
           } else {
           }
             }
             const login=() =>{
               if (usersss == undefined) {
-                  return <Link to={"/login"}> <p className='nav-link active'>login</p></Link>
+                  return <Link to={"/login"}> <p className='btn btn-info'>login</p></Link>
                 } else {
                 }
                   }
                   
       const home=() =>{
         if (usersss == undefined) {
-            return <Link to={"/home"}> <p className='nav-link active'>Acceuil</p></Link>
+            return  <Link to={"/home"}><p className='btn btn-info'>Acceuil</p></Link>
           } else {
             return <Link to={"/homeuser"}> <p className='nav-link active'>home</p></Link>
           }
@@ -61,13 +61,20 @@ fetch('http://127.0.0.1:8000/api/listdestroy')
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <br></br>
         {home()}
+        <br></br>
+
 {insription()}
      {login()}
        
       </ul>
       <form className="d-flex">
+     
+
         {log()}
+       
+
       </form>
     </div>
   </div>

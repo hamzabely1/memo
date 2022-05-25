@@ -3,6 +3,7 @@ import Heder from './conponent/Heder'
 import 'animate.css';
 import { useState } from 'react';
 
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
@@ -38,12 +39,16 @@ const im = {
 
           <h1>La solution de gestion de dépenses que votre équipe mérite</h1>
           <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of</p>
-          <p>{usersss}</p>
+       
           <div style={center}>
             <img style={imi} className='rounded float-start' src='https://media.lesechos.com/api/v1/images/view/5e5647bd3e4546399c47e53e/1280x720/11756-1525686128-rgpd-utilisateur.jpg'></img>
 
           </div>
-          <buttton className='btn btn-dark'>S'inscrire</buttton>
+          <br></br>
+          <Link to='/register'>
+                    <buttton className='btn btn-dark'>S'inscrire</buttton>
+
+          </Link>
           <br></br>
           <img src='https://classe-export.com/wp-content/uploads/2021/11/e-commerce-nation.jpg' />
           <h3>nous</h3>
